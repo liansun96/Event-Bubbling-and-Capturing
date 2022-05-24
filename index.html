@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubbling and Event Capturing</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #out{
+            width: 500px;
+            margin: 100px auto;
+            padding: 35px;
+            background: #00C9A7;
+        }
+
+        #mid{
+            padding: 50px;
+            background-color: #C4FCEF;
+        }
+
+        #inner{
+            padding: 100px;
+            background-color: #B0A8B9;
+        }
+
+        div:hover{
+            border : 3px solid black;
+        }
+    </style>
+</head>
+<body>
+
+    //Event Bubbling > with onclick 
+    <!-- <div class="out" onclick="run('1out')">
+        <div class="mid" onclick="run('2mid')">
+            <div class="inner" onclick="run('3inner')"></div>
+        </div>
+    </div> -->
+
+    <div id="out" >
+        <div id="mid" >
+            <div id="inner">
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        function run(x){
+           return console.log(`I am ${x} layer`);
+        }
+
+        //Event Capturing > With addEventListener
+        document.getElementById('out').addEventListener('click',function(){
+            run ('1 out')
+        },true);
+
+        document.getElementById('mid').addEventListener('click',function(){
+            run ('2 mid')
+        },true);
+
+        document.getElementById('inner').addEventListener('click',function(){
+            run ('3 inner')
+        },true);
+
+
+
+    </script>
+</body>
+</html>
